@@ -5,6 +5,8 @@ FROM golang:1.24.5-alpine AS builder
 # Set the current working directory inside the conatiner
 WORKDIR /app
 
+
+
 # Copy the GO modules files first to cache the dependencies
 COPY go.mod go.sum ./
 
@@ -13,6 +15,7 @@ RUN go mod download
 
 # Copy the rest of the source code into container
 COPY . .
+RUN CGO_ENABLED=0 GOOS=linux go build -o main .
 
 # Build the Go app binary.
 RUN go mod download

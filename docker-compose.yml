@@ -1,7 +1,8 @@
 
 services:
   mysql:
-    image: mysql:latest
+
+    image: mysql:lts
     container_name: mysql-container
     environment:
       - MYSQL_ROOT_PASSWORD=password
@@ -11,29 +12,40 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./mysql-data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql 
     healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -h localhost -p$MYSQL_ROOT_PASSWORD"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p$$MYSQL_ROOT_PASSWORD", "--protocol", "tcp"]
       interval: 10s
       timeout: 5s
-      retries: 5
+      retries: 30
+      start_period: 60s
       
   golang:
     build:
       context: ./backend
       dockerfile: Dockerfile
     container_name: golang-container
-
     ports:
       - "8080:8080"
     depends_on:
-      - mysql
-      
+      mysql:
+        condition: service_healthy 
     environment:
       - DB_HOST=mysql
       - DB_USER=user
       - DB_PASSWORD=password
       - DB_NAME=database
   
+  react-app:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8001:80"
+
+volumes:
+  mysql_data: {}
 
 
+
+  

@@ -20,7 +20,6 @@ frontend/.env.*       # Optional, if using multiple env files
 frontend/npm-debug.log*
 frontend/yarn-debug.log*
 frontend/yarn-error.log*
-frontend/package-lock.json
 frontend/pnpm-lock.yaml
 
 
@@ -44,7 +43,7 @@ backend/dist/
 # Vendor directory (if not checking in vendor)
 backend/vendor/
 
-# Dependency/cache
-backend/go.sum
 
 
+
+mysql-data/
