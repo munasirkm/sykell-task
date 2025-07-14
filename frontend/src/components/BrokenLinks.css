@@ -1,0 +1,100 @@
+/* Container styling */
+.broken-links-table {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--gray-200);
+    background: white;
+}
+
+/* Ensure proper scrolling behavior */
+.broken-links-table .p-datatable-wrapper {
+    overflow-x: auto;
+}
+
+/* Style for the frozen "Status Code" column */
+.broken-links-table .p-frozen-column {
+    background-color: #fff !important;
+    z-index: 10 !important;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    border-left: 1px solid var(--gray-200);
+}
+
+/* Override main table column widths - make specific to broken links table */
+.broken-links-table .p-datatable-thead > tr > th:nth-child(1) {
+    width: auto !important;
+    min-width: 40rem !important;
+}
+
+.broken-links-table .p-datatable-thead > tr > th:nth-child(2) {
+    width: 10rem !important;
+    min-width: 10rem !important;
+}
+
+/* Header styling */
+.broken-links-table .p-datatable-thead > tr > th {
+    background: var(--gray-50);
+    border-bottom: 1px solid var(--gray-200);
+    color: var(--gray-700);
+    font-weight: 500;
+    padding: 1rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    text-align: left;
+}
+
+/* Body styling */
+.broken-links-table .p-datatable-tbody > tr > td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--gray-100);
+    color: var(--gray-700);
+    font-size: 0.875rem;
+    white-space: nowrap;
+    text-align: left;
+}
+
+/* Override main table column widths for body cells */
+.broken-links-table .p-datatable-tbody > tr > td:nth-child(1) {
+    width: auto !important;
+    min-width: 40rem !important;
+}
+
+.broken-links-table .p-datatable-tbody > tr > td:nth-child(2) {
+    width: 10rem !important;
+    min-width: 10rem !important;
+}
+
+/* Row hover effect */
+.broken-links-table .p-datatable-tbody > tr:hover {
+    background: var(--gray-50);
+}
+
+/* URL column specific styling */
+.broken-links-url-col {
+    min-width: 40rem;
+}
+
+/* Status column specific styling */
+.broken-links-table .p-datatable-tbody > tr > td:last-child,
+.broken-links-table .p-datatable-thead > tr > th:last-child {
+    text-align: center;
+}
+
+/* Frozen column header styling */
+.broken-links-table .p-datatable-thead > tr > th.p-frozen-column {
+    background-color: var(--gray-50) !important;
+    z-index: 11 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .broken-links-table .p-datatable-thead > tr > th,
+    .broken-links-table .p-datatable-tbody > tr > td {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.8rem;
+    }
+    
+    .broken-links-url-col {
+        min-width: 25rem;
+    }
+}

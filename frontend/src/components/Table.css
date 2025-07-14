@@ -1,0 +1,226 @@
+
+  .action-buttons .p-button:hover {
+    box-shadow: 0 0 6px rgba(24, 144, 255, 0.6);
+  }
+
+
+.card {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Full width table with responsive columns */
+  .p-datatable {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--gray-200);
+    background: white;
+    width: 100%;
+  }
+  
+  .p-datatable .p-datatable-wrapper {
+    overflow-x: auto;
+  }
+  
+  .p-datatable .p-datatable-table {
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+  .p-datatable .p-datatable-thead > tr > th {
+    background: var(--gray-50);
+    border-bottom: 1px solid var(--gray-200);
+    color: var(--gray-700);
+    font-weight: 500;
+    padding: 1rem 0.5rem;
+    font-size: 0.875rem;
+    border-right: none;
+    border-left: none;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Column widths for better distribution */
+  .p-datatable .p-datatable-thead > tr > th:nth-child(1) { width: 3%; } /* Expander */
+  .p-datatable .p-datatable-thead > tr > th:nth-child(2) { width: 25%; } /* Title */
+  .p-datatable .p-datatable-thead > tr > th:nth-child(3) { width: 8%; } /* HTML Version */
+  .p-datatable .p-datatable-thead > tr > th:nth-child(4) { width: 6%; } /* Ex_Links */
+  .p-datatable .p-datatable-thead > tr > th:nth-child(5) { width: 6%; } /* Int_Links */
+  .p-datatable .p-datatable-thead > tr > th:nth-child(6) { width: 4%; } /* H1 */
+  .p-datatable .p-datatable-thead > tr > th:nth-child(7) { width: 4%; } /* H2 */
+  .p-datatable .p-datatable-thead > tr > th:nth-child(8) { width: 4%; } /* H3 */
+  .p-datatable .p-datatable-thead > tr > th:nth-child(9) { width: 4%; } /* H4 */
+  .p-datatable .p-datatable-thead > tr > th:nth-child(10) { width: 4%; } /* H5 */
+  .p-datatable .p-datatable-thead > tr > th:nth-child(11) { width: 4%; } /* H6 */
+  .p-datatable .p-datatable-thead > tr > th:nth-child(12) { width: 8%; } /* Status */
+  .p-datatable .p-datatable-thead > tr > th:nth-child(13) { width: 10%; } /* Action */
+  
+  .p-datatable .p-datatable-tbody > tr {
+    border-bottom: 1px solid var(--gray-100);
+  }
+  
+  .p-datatable .p-datatable-tbody > tr:hover {
+    background: var(--gray-50);
+    cursor: pointer;
+  }
+  
+  .p-datatable .p-datatable-tbody > tr > td {
+    padding: 1rem 0.5rem;
+    border: none;
+    color: var(--gray-700);
+    font-size: 0.875rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Title column should wrap */
+  .p-datatable .p-datatable-tbody > tr > td:nth-child(2) {
+    white-space: normal;
+    word-wrap: break-word;
+  }
+  
+  /* Center align numeric columns */
+  .p-datatable .p-datatable-tbody > tr > td:nth-child(n+4):nth-child(-n+11),
+  .p-datatable .p-datatable-thead > tr > th:nth-child(n+4):nth-child(-n+11) {
+    text-align: center;
+  }
+  
+  /* Row expansion styling */
+  .row-expansion-container {
+    padding: 1.5rem;
+    background: var(--gray-50);
+    border-top: 1px solid var(--gray-200);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  
+  .p-datatable .p-datatable-tbody > tr.p-datatable-row-expansion {
+    background: transparent;
+  }
+  
+  /* Action buttons */
+  .action-buttons {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+  
+  .action-buttons .p-button {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 6px;
+    border: 1px solid var(--gray-200);
+    background: white;
+    color: var(--gray-600);
+    transition: all 0.2s;
+  }
+  
+  .action-buttons .p-button:hover {
+    background: var(--gray-50);
+    border-color: var(--gray-300);
+  }
+  
+  .action-buttons .p-button.p-button-info {
+    color: var(--primary);
+    border-color: var(--primary-light);
+  }
+  
+  .action-buttons .p-button.p-button-info:hover {
+    background: var(--primary-light);
+  }
+  
+  .action-buttons .p-button.p-button-danger {
+    color: #ef4444;
+    border-color: #fecaca;
+  }
+  
+  .action-buttons .p-button.p-button-danger:hover {
+    background: #fef2f2;
+  }
+  
+  /* Expander button */
+  .p-datatable .p-datatable-tbody > tr > td .p-row-toggler {
+    background: white;
+    border: 1px solid var(--gray-200);
+    color: var(--gray-600);
+    border-radius: 6px;
+    width: 2rem;
+    height: 2rem;
+    transition: all 0.2s;
+  }
+  
+  .p-datatable .p-datatable-tbody > tr > td .p-row-toggler:hover {
+    background: var(--gray-50);
+    border-color: var(--gray-300);
+  }
+  
+  /* Status styling */
+  .p-datatable .p-datatable-tbody > tr > td {
+    font-weight: 400;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .row-expansion-container {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    
+    /* Hide less important columns on smaller screens */
+    .p-datatable .p-datatable-thead > tr > th:nth-child(n+6):nth-child(-n+11),
+    .p-datatable .p-datatable-tbody > tr > td:nth-child(n+6):nth-child(-n+11) {
+      display: none;
+    }
+    
+    /* Adjust remaining column widths */
+    .p-datatable .p-datatable-thead > tr > th:nth-child(1) { width: 5%; }
+    .p-datatable .p-datatable-thead > tr > th:nth-child(2) { width: 15%; }
+    .p-datatable .p-datatable-thead > tr > th:nth-child(3) { width: 30%; }
+    .p-datatable .p-datatable-thead > tr > th:nth-child(4) { width: 10%; }
+    .p-datatable .p-datatable-thead > tr > th:nth-child(5) { width: 10%; }
+    .p-datatable .p-datatable-thead > tr > th:nth-child(12) { width: 10%; }
+    .p-datatable .p-datatable-thead > tr > th:nth-child(13) { width: 10%; }
+  }
+  
+  @media (max-width: 768px) {
+    .p-datatable .p-datatable-thead > tr > th,
+    .p-datatable .p-datatable-tbody > tr > td {
+      padding: 0.75rem 0.25rem;
+      font-size: 0.8rem;
+    }
+    
+    .action-buttons .p-button {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+    
+    /* Further hide columns on mobile */
+    .p-datatable .p-datatable-thead > tr > th:nth-child(3),
+    .p-datatable .p-datatable-tbody > tr > td:nth-child(3) {
+      display: none;
+    }
+    
+    /* Adjust mobile column widths */
+    .p-datatable .p-datatable-thead > tr > th:nth-child(1) { width: 8%; }
+    .p-datatable .p-datatable-thead > tr > th:nth-child(2) { width: 50%; }
+    .p-datatable .p-datatable-thead > tr > th:nth-child(4) { width: 12%; }
+    .p-datatable .p-datatable-thead > tr > th:nth-child(5) { width: 12%; }
+    .p-datatable .p-datatable-thead > tr > th:nth-child(12) { width: 12%; }
+    .p-datatable .p-datatable-thead > tr > th:nth-child(13) { width: 6%; }
+  }
+
+  /* Make checkbox column narrower */
+.narrow-checkbox-column {
+    width: 2rem !important;
+    max-width: 2rem !important;
+    padding: 0 !important;
+    text-align: center;
+  }
+  

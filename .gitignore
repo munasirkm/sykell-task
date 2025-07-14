@@ -1,0 +1,50 @@
+# Root-level ignores (common across project)
+.DS_Store
+Thumbs.db
+*.log
+
+# IDE/editor config
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ----------------------
+# React (frontend folder)
+# ----------------------
+frontend/node_modules/
+frontend/build/
+frontend/dist/
+frontend/.env
+frontend/.env.*       # Optional, if using multiple env files
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/package-lock.json
+frontend/pnpm-lock.yaml
+
+
+# ----------------------
+# Go (backend folder)
+# ----------------------
+# Go binaries and build output
+backend/*.exe
+backend/*.exe~
+backend/*.dll
+backend/*.so
+backend/*.dylib
+backend/*.test
+backend/*.out
+
+# Output folders
+backend/bin/
+backend/build/
+backend/dist/
+
+# Vendor directory (if not checking in vendor)
+backend/vendor/
+
+# Dependency/cache
+backend/go.sum
+
+
