@@ -36,6 +36,10 @@ You can run both frontend and backend using Docker Compose:
    - Backend API: [http://localhost:8080](http://localhost:8080)
 
 ---
+
+## Run manually
+
+make sure mysql server is running in background
 ---
 
 ## Backend Setup (Go)
@@ -82,16 +86,13 @@ sykell-task/
   docker-compose.yml
 ```
 
----
 
-## Environment Variables
-- The default setup assumes local development. If you need to change API endpoints or database configs, update the relevant files in `backend/` and `frontend/src/Api/axiosInstance.ts`.
-
----
 
 ## Troubleshooting
 - Ensure Go and Node.js are installed and in your PATH.
 - If ports are in use, change them in the backend or frontend config.
+- - Ensure Mysql server is running 
 - For Docker issues, ensure Docker Desktop is running and up to date.
+
 
 ---
