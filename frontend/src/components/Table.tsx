@@ -10,11 +10,14 @@ import { TableProps, Product } from '../types';
 
 import { ConfirmDialog } from 'primereact/confirmdialog'; // For <ConfirmDialog /> component
 import { confirmDialog } from 'primereact/confirmdialog'; // For confirmDialog method
+import { Dropdown } from 'primereact/dropdown';
 
 const Table: React.FC<TableProps> = ({ products, fetchData }) => {
   const [expandedRows, setExpandedRows] = useState<any>(null);
   const [selectedRows, setSelectedRows] = useState<Product[]>([]);
   const [search, setSearch] = useState('');
+  const [statusFilter, setStatusFilter] = useState<'all' | 'queued' | 'running' | 'done'>('all');
+  const [loginFormFilter, setLoginFormFilter] = useState<'all' | 'yes' | 'no'>('all');
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -133,20 +136,53 @@ const Table: React.FC<TableProps> = ({ products, fetchData }) => {
     });
   };
 
-  // Global search filter
+  // Filtered products with status and login form filters
   const filteredProducts = products.filter((product) => {
     const searchLower = search.toLowerCase();
-    return (
+    const matchesSearch =
       product.original_url.toLowerCase().includes(searchLower) ||
-      product.title.toLowerCase().includes(searchLower)
-    );
+      product.title.toLowerCase().includes(searchLower);
+    const matchesStatus =
+      statusFilter === 'all' || product.status === statusFilter;
+    const matchesLoginForm =
+      loginFormFilter === 'all' ||
+      (loginFormFilter === 'yes' && product.has_login_form) ||
+      (loginFormFilter === 'no' && !product.has_login_form);
+    return matchesSearch && matchesStatus && matchesLoginForm;
   });
 
   return (
     <div className="card">
       <ConfirmDialog />
-      <div className="table-header-bar">
-        <div className="search-input-wrapper">
+      <div className="table-header-bar" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <span style={{ fontSize: '0.92em', color: '#555', marginRight: '0.2rem' }}>Status:</span>
+          <Dropdown
+            value={statusFilter}
+            options={[
+              { label: 'All', value: 'all' },
+              { label: 'Queued', value: 'queued' },
+              { label: 'Running', value: 'running' },
+              { label: 'Done', value: 'done' },
+            ]}
+            onChange={e => setStatusFilter(e.value)}
+            placeholder="Status"
+            style={{ width: '6rem', fontSize: '0.85em' }}
+          />
+          <span style={{ fontSize: '0.92em', color: '#555', marginLeft: '0.5rem', marginRight: '0.2rem' }}>Login Form:</span>
+          <Dropdown
+            value={loginFormFilter}
+            options={[
+              { label: 'All', value: 'all' },
+              { label: 'Yes', value: 'yes' },
+              { label: 'No', value: 'no' },
+            ]}
+            onChange={e => setLoginFormFilter(e.value)}
+            placeholder="Login"
+            style={{ width: '6rem', fontSize: '0.85em' }}
+          />
+        </div>
+        <div className="search-input-wrapper" style={{ marginLeft: '0.5rem' }}>
           <i className="pi pi-search search-icon" />
           <input
             type="text"

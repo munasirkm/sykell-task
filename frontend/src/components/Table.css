@@ -260,4 +260,15 @@
   outline: none;
   border-color: var(--primary, #1890ff);
 }
+
+.p-dropdown {
+  height: 32px !important;
+  min-height: 32px !important;
+  font-size: 0.95em;
+}
+.p-dropdown-label {
+  line-height: 32px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
   
