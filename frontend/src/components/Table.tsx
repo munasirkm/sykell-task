@@ -189,9 +189,19 @@ const Table: React.FC<TableProps> = ({ products, fetchData }) => {
         <Column selectionMode="multiple" className="narrow-checkbox-column" />
         <Column field='original_url' header='Url' style={{ wordWrap: 'normal' }} />
         <Column field="title" header="Title" sortable />
-        
-        <Column field="external_links" header="#Ex_Links" sortable />
-        <Column field="internal_links" header="#Int_Links" sortable />
+        <Column 
+          header={<span>Login<br />Form</span>}
+          body={(rowData: Product) => (
+            rowData.has_login_form ? (
+              <i className="pi pi-check" style={{ color: 'green', fontSize: '0.8rem', display: 'block', textAlign: 'center' }}></i>
+            ) : (
+              <i className="pi pi-times" style={{ color: 'red', fontSize: '0.8rem', display: 'block', textAlign: 'center' }}></i>
+            )
+          )}
+          style={{ width: '4rem', textAlign: 'center' }}
+        />
+        <Column field="external_links" header={<span>External<br />Links</span>} sortable />
+        <Column field="internal_links" header={<span>Internal<br />Links</span>} sortable />
         <Column field="h1_count" header="H1" sortable />
         <Column field="h2_count" header="H2" sortable />
         <Column field="h3_count" header="H3" sortable />

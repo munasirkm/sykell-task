@@ -13,6 +13,7 @@ export interface Product {
   h6_count: number;
   status: 'queued' | 'running' | 'done';
   broken_link_list: BrokenLink[];
+  has_login_form: boolean; // Added field for login form presence
 }
 
 export interface BrokenLink {
