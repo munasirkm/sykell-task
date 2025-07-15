@@ -99,6 +99,61 @@ const Table: React.FC<TableProps> = ({ products, fetchData }) => {
     );
   };
 
+  const statusBodyTemplate = (rowData: Product) => {
+    let color = '';
+    let bg = '';
+    if (rowData.status === 'queued') {
+      color = '#555'; bg = '#e0e0e0';
+    } else if (rowData.status === 'running') {
+      color = '#b26a00'; bg = '#ffe0b2';
+    } else if (rowData.status === 'done') {
+      color = '#1b5e20'; bg = '#b9f6ca';
+    }
+    return (
+      <span style={{
+        display: 'inline-block',
+        minWidth: 60,
+        padding: '2px 10px',
+        borderRadius: '12px',
+        fontSize: '0.92em',
+        fontWeight: 500,
+        color,
+        background: bg,
+        textAlign: 'center',
+        textTransform: 'capitalize',
+      }}>{rowData.status}</span>
+    );
+  };
+
+  const statusOptionTemplate = (option: any) => {
+    let color = '';
+    let bg = '';
+    if (option.value === 'queued') {
+      color = '#555'; bg = '#e0e0e0';
+    } else if (option.value === 'running') {
+      color = '#b26a00'; bg = '#ffe0b2';
+    } else if (option.value === 'done') {
+      color = '#1b5e20'; bg = '#b9f6ca';
+    }
+    if (option.value === 'all') {
+      return <span style={{ color: '#555' }}>{option.label}</span>;
+    }
+    return (
+      <span style={{
+        display: 'inline-block',
+        minWidth: 60,
+        padding: '2px 10px',
+        borderRadius: '12px',
+        fontSize: '0.92em',
+        fontWeight: 500,
+        color,
+        background: bg,
+        textAlign: 'center',
+        textTransform: 'capitalize',
+      }}>{option.label}</span>
+    );
+  };
+
   const confirm1 = (accept: () => void) => {
     confirmDialog({
       message: 'Are you sure you want to delete?',
@@ -162,6 +217,7 @@ const Table: React.FC<TableProps> = ({ products, fetchData }) => {
             onChange={e => setStatusFilter(e.value)}
             placeholder="Status"
             style={{ width: '6rem', fontSize: '0.85em' }}
+            itemTemplate={statusOptionTemplate}
           />
           <span style={{ fontSize: '0.92em', color: '#555', marginLeft: '0.5rem', marginRight: '0.2rem' }}>Login Form:</span>
           <Dropdown
@@ -238,7 +294,7 @@ const Table: React.FC<TableProps> = ({ products, fetchData }) => {
         <Column field="h4_count" header="H4" sortable />
         <Column field="h5_count" header="H5" sortable />
         <Column field="h6_count" header="H6" sortable />
-        <Column field="status" header="Staus" sortable />
+        <Column field="status" header="Status" sortable body={statusBodyTemplate} />
         <Column
           body={actionBodyTemplate}
         />
