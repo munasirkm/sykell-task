@@ -49,9 +49,15 @@ const Table: React.FC<TableProps> = ({ products, fetchData }) => {
 
   const rowExpansionTemplate = (data: Product) => {
     return (
-      <div className=" row-expansion-container">
-        <LinksChart internal={data.internal_links} external={data.external_links} />
-        <BrokenLinks links={data.broken_link_list} />
+      <div className="row-expansion-container" style={{ display: 'flex', gap: '2rem' }}>
+        <div style={{ flex: 1 }}>
+          <div style={{ marginBottom: 4, fontWeight: 600, fontSize: '1.05em', textAlign: 'center' }}>Internal vs External Links</div>
+          <LinksChart internal={data.internal_links} external={data.external_links} />
+        </div>
+        <div style={{ flex: 1 }}>
+          <div style={{ marginBottom: 4, fontWeight: 600, fontSize: '1.05em', textAlign: 'center' }}>Broken Links</div>
+          <BrokenLinks links={data.broken_link_list} />
+        </div>
       </div>
     );
   };
