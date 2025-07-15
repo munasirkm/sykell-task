@@ -56,32 +56,6 @@ const Table: React.FC<TableProps> = ({ products, fetchData }) => {
     );
   };
 
-  const actionHeaderTemplate = () => {
-    return (
-      <div className="action-buttons">
-        <Button
-          icon="pi pi-refresh"
-          severity="info"
-          rounded
-          text
-          size="small"
-          disabled={!selectedRows.length}
-          onClick={() => crawlService.reanalyzeUrl(selectedRows.map(item => item.ID)).then(() => fetchData())}
-        />
-
-        <Button
-          icon="pi pi-trash"
-          severity="danger"
-          rounded
-          text
-          size="small"
-          onClick={() => confirm1(() => crawlService.deleteUrl(selectedRows.map(item => item.ID)).then(() => fetchData()))}
-          disabled={!selectedRows.length}
-        />
-      </div>
-    );
-  };
-
   const actionBodyTemplate = (rowData: Product) => {
     const { status } = rowData;
 
@@ -154,7 +128,27 @@ const Table: React.FC<TableProps> = ({ products, fetchData }) => {
   return (
     <div className="card">
       <ConfirmDialog />
-      <div className="table-header-bar" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+      <div className="table-header-bar" style={{ display: 'flex', alignItems: 'center', gap: '1rem', justifyContent: 'space-between' }}>
+        <div className="action-buttons" style={{ display: 'flex', gap: '0.5rem' }}>
+          <Button
+            icon="pi pi-refresh"
+            severity="info"
+            rounded
+            text
+            size="small"
+            disabled={!selectedRows.length}
+            onClick={() => crawlService.reanalyzeUrl(selectedRows.map(item => item.ID)).then(() => fetchData())}
+          />
+          <Button
+            icon="pi pi-trash"
+            severity="danger"
+            rounded
+            text
+            size="small"
+            onClick={() => confirm1(() => crawlService.deleteUrl(selectedRows.map(item => item.ID)).then(() => fetchData()))}
+            disabled={!selectedRows.length}
+          />
+        </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <span style={{ fontSize: '0.92em', color: '#555', marginRight: '0.2rem' }}>Status:</span>
           <Dropdown
@@ -181,16 +175,16 @@ const Table: React.FC<TableProps> = ({ products, fetchData }) => {
             placeholder="Login"
             style={{ width: '6rem', fontSize: '0.85em' }}
           />
-        </div>
-        <div className="search-input-wrapper" style={{ marginLeft: '0.5rem' }}>
-          <i className="pi pi-search search-icon" />
-          <input
-            type="text"
-            className="global-search-box"
-            placeholder="Search..."
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-          />
+          <div className="search-input-wrapper" style={{ marginLeft: '0.5rem' }}>
+            <i className="pi pi-search search-icon" />
+            <input
+              type="text"
+              className="global-search-box"
+              placeholder="Search..."
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+            />
+          </div>
         </div>
       </div>
       <DataTable
@@ -246,7 +240,6 @@ const Table: React.FC<TableProps> = ({ products, fetchData }) => {
         <Column field="h6_count" header="H6" sortable />
         <Column field="status" header="Staus" sortable />
         <Column
-          header={actionHeaderTemplate}
           body={actionBodyTemplate}
         />
       </DataTable>
