@@ -14,6 +14,7 @@ import { confirmDialog } from 'primereact/confirmdialog'; // For confirmDialog m
 const Table: React.FC<TableProps> = ({ products, fetchData }) => {
   const [expandedRows, setExpandedRows] = useState<any>(null);
   const [selectedRows, setSelectedRows] = useState<Product[]>([]);
+  const [search, setSearch] = useState('');
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -132,11 +133,32 @@ const Table: React.FC<TableProps> = ({ products, fetchData }) => {
     });
   };
 
+  // Global search filter
+  const filteredProducts = products.filter((product) => {
+    const searchLower = search.toLowerCase();
+    return (
+      product.original_url.toLowerCase().includes(searchLower) ||
+      product.title.toLowerCase().includes(searchLower)
+    );
+  });
+
   return (
     <div className="card">
       <ConfirmDialog />
+      <div className="table-header-bar">
+        <div className="search-input-wrapper">
+          <i className="pi pi-search search-icon" />
+          <input
+            type="text"
+            className="global-search-box"
+            placeholder="Search..."
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+          />
+        </div>
+      </div>
       <DataTable
-        value={products}
+        value={filteredProducts}
         paginator
         rows={15}
         stateStorage={'local'}
